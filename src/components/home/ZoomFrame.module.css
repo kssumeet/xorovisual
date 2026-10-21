@@ -1,0 +1,77 @@
+.section {
+  position: relative;
+  height: 100svh;
+  min-height: 560px;
+  overflow: hidden;
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+}
+
+.fill {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(7 7 7 / 0.85), rgb(7 7 7 / 0.1) 60%);
+}
+
+.copy {
+  position: absolute;
+  inset: auto 0 0;
+  display: grid;
+  gap: var(--space-3);
+  padding-bottom: clamp(3rem, 8vh, 6rem);
+}
+
+.heading {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-tight);
+}
+
+.formats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.formats li {
+  padding: 0.45rem 0.9rem;
+  border: 1px solid rgb(243 241 236 / 0.35);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+}
+
+:global(.motion) .frame {
+  clip-path: inset(30% 34% 30% 34% round 8px);
+}
+
+:global(.motion) .copy {
+  opacity: 0;
+}
+
+:global(.motion-failsafe) .frame {
+  clip-path: none !important;
+}
+
+:global(.motion-failsafe) .copy {
+  opacity: 1 !important;
+}

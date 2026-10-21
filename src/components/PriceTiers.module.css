@@ -1,0 +1,231 @@
+.tiers {
+  display: grid;
+  gap: var(--col-gap);
+  counter-reset: none;
+}
+
+.tier {
+  min-width: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: clamp(1.5rem, 1rem + 1.6vw, 2.5rem);
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.package {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--c-cyan);
+}
+
+.name {
+  font-size: clamp(1.35rem, 1.1rem + 1vw, 1.9rem);
+  line-height: 1.05;
+}
+
+.forWho {
+  color: var(--fg-muted);
+}
+
+.duration {
+  align-self: flex-start;
+  padding: 0.45rem 0.8rem;
+  border-left: 3px solid var(--c-violet);
+  background: rgb(255 255 255 / 0.03);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--line);
+  font-size: 0.875rem;
+}
+
+.table th,
+.table td {
+  padding: 0.65rem 0.8rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+.table thead th {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.table thead th:last-child,
+.price {
+  text-align: right !important;
+}
+
+.table tbody th {
+  font-weight: 700;
+}
+
+.price {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.25rem;
+  color: var(--c-cyan);
+}
+
+.ideal {
+  padding: 0.8rem 0.9rem;
+  border: 1px solid rgb(34 211 255 / 0.25);
+  border-radius: 8px;
+  background: rgb(34 211 255 / 0.04);
+  font-size: 0.875rem;
+  color: var(--fg-muted);
+}
+
+.ideal span {
+  margin-right: 0.35rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-cyan);
+}
+
+.features {
+  display: grid;
+  align-content: start;
+  gap: 0.6rem;
+  flex: 1;
+}
+
+.features li {
+  position: relative;
+  padding-left: 1.6rem;
+}
+
+/* A brand-cyan tick in place of a bullet. */
+.features li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 700;
+  color: var(--c-cyan);
+}
+
+.cta {
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+@media (max-width: 479px) {
+  .tier {
+    padding-inline: 1.1rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.55rem 0.5rem;
+  }
+
+  .table thead th {
+    letter-spacing: 0.06em;
+  }
+
+  .price {
+    font-size: 1.05rem;
+  }
+}
+
+.note {
+  margin-top: var(--space-3);
+  color: var(--fg-muted);
+  font-size: var(--fs-small);
+  text-align: center;
+}
+
+@media (min-width: 900px) {
+  .tiers {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch;
+  }
+}
+
+/* Printable sheet: always three columns, sized to fit one A4 page. */
+.wrap[data-print] .tiers {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.wrap[data-print] .tier {
+  padding: 16px 12px;
+  gap: 9px;
+  transform: none;
+  box-shadow: none;
+  font-size: 10.5px;
+  line-height: 1.4;
+}
+
+.wrap[data-print] .package {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+
+.wrap[data-print] .name {
+  font-size: 15px;
+}
+
+.wrap[data-print] .duration {
+  padding: 4px 8px;
+  font-size: 9px;
+}
+
+.wrap[data-print] .table {
+  font-size: 10px;
+}
+
+.wrap[data-print] .table th,
+.wrap[data-print] .table td {
+  padding: 5px 5px;
+}
+
+.wrap[data-print] .table thead th {
+  font-size: 8px;
+  letter-spacing: 0.04em;
+}
+
+.wrap[data-print] .price {
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.wrap[data-print] .features {
+  gap: 4px;
+}
+
+.wrap[data-print] .features li {
+  padding-left: 1.2rem;
+}
+
+.wrap[data-print] .ideal {
+  padding: 7px 8px;
+  font-size: 9.5px;
+}
+
+.wrap[data-print] .forWho {
+  font-size: 10px;
+}
+
+.wrap[data-print] .note {
+  font-size: 10px;
+  margin-top: 10px;
+}

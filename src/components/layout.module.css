@@ -1,0 +1,79 @@
+/* Shared interior-page structures. */
+
+.intro {
+  display: grid;
+  gap: var(--space-3);
+  padding-top: calc(var(--header-h) + clamp(3rem, 2rem + 6vw, 8rem));
+  padding-bottom: clamp(3rem, 2rem + 5vw, 7rem);
+}
+
+.introTitle {
+  font-size: var(--fs-h1);
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+
+.introLead {
+  color: var(--fg-muted);
+  display: grid;
+  gap: 1rem;
+}
+
+/* A label column beside a body column; collapses on narrow screens. */
+.split {
+  display: grid;
+  gap: var(--space-3);
+  padding-block: clamp(2.5rem, 2rem + 3vw, 5rem);
+  border-top: 1px solid var(--line);
+}
+
+.splitHead {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+}
+
+.splitTitle {
+  font-size: var(--fs-h3);
+  line-height: 1.1;
+}
+
+.splitBody {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 46rem;
+}
+
+.splitBody p {
+  max-width: var(--measure);
+}
+
+.ruled {
+  border-top: 1px solid var(--line);
+}
+
+.ruled > li {
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.ruled strong {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+}
+
+.ruled p {
+  color: var(--fg-muted);
+}
+
+@media (min-width: 960px) {
+  .split {
+    grid-template-columns: 4fr 8fr;
+    column-gap: var(--col-gap);
+  }
+}
+
+.intro > :global(.placeholder-tag) {
+  justify-self: start;
+}

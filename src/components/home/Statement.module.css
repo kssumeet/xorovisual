@@ -1,0 +1,13 @@
+.section {
+  padding-block: var(--section);
+}
+
+.text {
+  max-width: 22ch;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 1rem + 4.2vw, 5.4rem);
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}

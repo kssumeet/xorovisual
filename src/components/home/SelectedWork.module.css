@@ -1,0 +1,44 @@
+.head {
+  display: grid;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.heading {
+  font-size: var(--fs-h2);
+  line-height: 1.02;
+}
+
+.reel {
+  row-gap: clamp(4rem, 3rem + 5vw, 9rem);
+  align-items: start;
+  grid-auto-flow: row dense;
+}
+
+.slot {
+  grid-column: 1 / -1;
+}
+
+.more {
+  margin-top: var(--space-6);
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 899px) {
+  /* Verticals and squares stay narrower than full width on phones. */
+  .slot:has(.drop) {
+    grid-column: 3 / -3;
+  }
+}
+
+@media (min-width: 900px) {
+  .slot {
+    grid-column: var(--start) / span var(--span);
+  }
+
+  /* Verticals sit lower than their neighbour, breaking the baseline. */
+  .slot:has(.drop) {
+    margin-top: 18vh;
+  }
+}

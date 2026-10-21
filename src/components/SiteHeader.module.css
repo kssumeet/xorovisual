@@ -1,0 +1,188 @@
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  color: var(--c-projector);
+  transition:
+    background-color var(--dur-mid) ease,
+    border-color var(--dur-mid) ease;
+  border-bottom: 1px solid transparent;
+}
+
+.header[data-scrolled="true"] {
+  background: rgb(7 7 7 / 0.92);
+  border-bottom-color: var(--c-ash);
+}
+
+@supports (backdrop-filter: blur(1px)) {
+  .header[data-scrolled="true"] {
+    background: rgb(7 7 7 / 0.72);
+    backdrop-filter: blur(14px);
+  }
+}
+
+/* backdrop-filter would make the header the containing block for the fixed
+   menu sheet and collapse it, so the open state uses a solid background. */
+.header[data-open="true"] {
+  background: var(--c-gate);
+  backdrop-filter: none;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  height: var(--header-h);
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4em;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.wordmark {
+  align-items: center;
+}
+
+.mark {
+  width: 54px;
+  height: auto;
+}
+
+.wordmarkLight {
+  font-weight: 500;
+  font-size: 0.7em;
+  letter-spacing: 0.5em;
+  color: var(--c-projector);
+}
+
+.desktopNav {
+  display: none;
+}
+
+.desktopNav ul {
+  display: flex;
+  gap: clamp(1rem, 1.6vw, 2rem);
+}
+
+.navLink {
+  position: relative;
+  display: inline-block;
+  padding-block: 0.5rem;
+  font-size: var(--fs-small);
+  color: var(--c-stone);
+  transition: color var(--dur-fast) ease;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.3rem;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--dur-mid) var(--ease-out);
+}
+
+.navLink:hover,
+.navLink[aria-current="page"] {
+  color: var(--c-projector);
+}
+
+.navLink:hover::after,
+.navLink[aria-current="page"]::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* The header always sits on the dark screening room, even above .paper sections. */
+.actions .cta {
+  --fg: var(--c-projector);
+  --bg: var(--c-gate);
+  display: none;
+  min-height: 42px;
+  padding-block: 0.6rem;
+}
+
+.toggle {
+  min-width: 48px;
+  min-height: 48px;
+  padding: 0 0.25rem;
+  background: none;
+  border: 0;
+}
+
+.toggleLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.sheet {
+  position: fixed;
+  inset: var(--header-h) 0 0;
+  overflow-y: auto;
+  background: var(--c-gate);
+  padding-block: var(--space-4) var(--space-5);
+  --fg: var(--c-projector);
+  --bg: var(--c-gate);
+}
+
+.sheet[hidden] {
+  display: none;
+}
+
+.sheetList {
+  margin-bottom: var(--space-4);
+  border-top: 1px solid var(--c-ash);
+}
+
+.sheetLink {
+  display: block;
+  padding-block: 0.7rem;
+  border-bottom: 1px solid var(--c-ash);
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(1.7rem, 1.2rem + 2.5vw, 2.8rem);
+  line-height: 1.05;
+}
+
+.sheetLink[aria-current="page"] {
+  color: var(--c-signal);
+}
+
+@media (min-width: 640px) {
+  .actions .cta {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 1180px) {
+  .desktopNav {
+    display: block;
+  }
+
+  .toggle,
+  .sheet {
+    display: none;
+  }
+}

@@ -1,0 +1,49 @@
+.tile {
+  min-width: 0;
+}
+
+.link {
+  display: block;
+}
+
+.link :global(img),
+.link video {
+  transition: transform 1.2s var(--ease-out);
+}
+
+@media (hover: hover) {
+  .link:hover :global(img),
+  .link:hover video {
+    transform: scale(1.025);
+  }
+
+  .link:hover .title {
+    font-style: italic;
+  }
+}
+
+.link:focus-visible {
+  outline-offset: 6px;
+}
+
+.caption {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 1rem;
+  max-width: 34rem;
+}
+
+.title {
+  font-size: var(--fs-h3);
+  line-height: 1.05;
+}
+
+.caption > :global(.placeholder-tag) {
+  justify-self: start;
+  margin-top: 0.35rem;
+}
+
+.summary {
+  color: var(--fg-muted);
+  font-size: var(--fs-small);
+}

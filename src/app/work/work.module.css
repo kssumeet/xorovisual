@@ -1,0 +1,25 @@
+.legend {
+  display: grid;
+  gap: var(--space-3);
+  padding-block: var(--space-3);
+  border-block: 1px solid var(--line);
+}
+
+.legend dt {
+  margin-bottom: 0.3rem;
+  color: var(--fg);
+}
+
+.legend dd {
+  margin: 0;
+  color: var(--fg-muted);
+  font-size: var(--fs-small);
+  max-width: 26rem;
+}
+
+@media (min-width: 900px) {
+  .legend {
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: var(--col-gap);
+  }
+}

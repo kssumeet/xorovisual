@@ -1,0 +1,164 @@
+.section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(1.5rem, 3vh, 2.5rem);
+  min-height: 100svh;
+  padding-block: calc(var(--header-h) + 1rem) 2rem;
+  overflow: hidden;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.heading {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-tight);
+}
+
+.track {
+  --h: min(58vh, 640px);
+  display: flex;
+  gap: clamp(1rem, 2vw, 2rem);
+  padding-inline: var(--gutter);
+  width: max-content;
+  will-change: transform;
+}
+
+.card {
+  flex: none;
+  width: calc(var(--h) * var(--ratio));
+}
+
+.link {
+  display: block;
+}
+
+.frame {
+  position: relative;
+  height: var(--h);
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.frame > img,
+.frame > video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    transform 1.2s var(--ease-out),
+    opacity 600ms var(--ease-out) !important;
+}
+
+@media (hover: hover) {
+  .link:hover .frame > img,
+  .link:hover .frame > video {
+    transform: scale(1.05);
+  }
+}
+
+.link:focus-visible {
+  outline-offset: 6px;
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.9rem;
+  align-items: baseline;
+  margin-top: 0.9rem;
+}
+
+.meta > :last-child {
+  grid-column: 2;
+}
+
+.title {
+  font-size: clamp(1.1rem, 0.9rem + 0.8vw, 1.6rem);
+  line-height: 1;
+  transition: color var(--dur-fast);
+}
+
+.link:hover .title {
+  color: var(--c-signal);
+}
+
+.progress {
+  display: none;
+}
+
+.progress span {
+  display: block;
+  height: 2px;
+  background: var(--grad);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.cursor {
+  position: fixed;
+  left: -48px;
+  top: -48px;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: var(--grad);
+  color: #05050d;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Touch, small screens, reduced motion: a native, snapping swipe row. */
+@media (max-width: 899px), (hover: none), (prefers-reduced-motion: reduce) {
+  .section {
+    min-height: 0;
+    padding-block: var(--section) var(--space-4);
+  }
+
+  .track {
+    --h: min(56vh, 460px);
+    width: auto;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+  }
+
+  .card {
+    scroll-snap-align: start;
+    max-width: 82vw;
+  }
+
+  .frame {
+    height: auto;
+    aspect-ratio: var(--ratio);
+    max-height: var(--h);
+  }
+
+  .cursor {
+    display: none;
+  }
+}
+
+@media (min-width: 900px) and (hover: hover) and (pointer: fine) {
+  .progress {
+    display: block;
+  }
+}

@@ -1,0 +1,453 @@
+/* ==========================================================================
+   Xoro Visuals — design tokens
+   Two environments: the screening room (default, dark) and the production
+   office (.paper, light). Components read semantic tokens only.
+   ========================================================================== */
+
+:root {
+  /* Palette */
+  --c-gate: #070707;
+  --c-charcoal: #111110;
+  --c-ash: #262523;
+  --c-warm-grey: #8a857c;
+  --c-stone: #b5b0a6;
+  --c-projector: #f3f1ec;
+  --c-paper: #121211;
+  --c-ink: #070707;
+  /* Brand: sampled from the Xoro Visuals logo */
+  --c-cyan: #22d3ff;
+  --c-blue: #3b82ff;
+  --c-violet: #7c4dff;
+  --c-signal: #4f9bff;
+  --grad: linear-gradient(105deg, #22d3ff 0%, #4f8bff 50%, #9b7bff 100%);
+
+  /* Semantic */
+  --bg: var(--c-gate);
+  --surface: var(--c-charcoal);
+  --fg: var(--c-projector);
+  --fg-muted: #a19c93;
+  --line: var(--c-ash);
+  --line-strong: #45423e;
+  --accent: var(--c-signal);
+  --focus: var(--c-signal);
+  --danger: #ff8a6b;
+
+  /* Type */
+  --font-display: var(--font-orbitron), var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
+  --font-body: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SF Mono", Menlo, monospace;
+
+  --fs-display: clamp(3rem, 0.6rem + 10vw, 13rem);
+  --fs-h1: clamp(2.6rem, 1rem + 6.4vw, 8rem);
+  --fs-h2: clamp(2.1rem, 1rem + 4.2vw, 5.5rem);
+  --fs-h3: clamp(1.35rem, 1rem + 1.3vw, 2.1rem);
+  --fs-lead: clamp(1.125rem, 1rem + 0.5vw, 1.4rem);
+  --fs-body: 1.0625rem;
+  --fs-small: 0.9375rem;
+  --fs-label: 0.75rem;
+
+  --lh-tight: 0.88;
+  --lh-snug: 0.95;
+  --lh-body: 1.6;
+  --track-label: 0.14em;
+
+  /* Space & layout */
+  --gutter: clamp(16px, 3.4vw, 48px);
+  --col-gap: clamp(12px, 2vw, 32px);
+  --max: 1680px;
+  --measure: 36rem;
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-6: clamp(5rem, 3rem + 7vw, 10rem);
+  --section: clamp(6rem, 4rem + 8vw, 12rem);
+  --header-h: 72px;
+
+  --radius: 999px;
+
+  /* Motion */
+  --dur-fast: 180ms;
+  --dur-mid: 420ms;
+  --dur-slow: 900ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  color-scheme: dark;
+}
+
+/* Business sections sit on a slightly raised surface; same light-on-dark type. */
+.paper {
+  --bg: var(--c-paper);
+  --surface: #1a1a18;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 16px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd,
+ol,
+ul {
+  margin: 0;
+}
+
+ol,
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: var(--lh-snug);
+  letter-spacing: 0.01em;
+  text-wrap: balance;
+}
+
+/* Second heading lines: hollow, outlined type, like a trailer title card. */
+:is(h1, h2) .italic {
+  font-style: normal;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--fg);
+}
+
+@supports not (-webkit-text-stroke: 1px black) {
+  :is(h1, h2) .italic {
+    color: var(--fg-muted);
+  }
+}
+
+p {
+  text-wrap: pretty;
+}
+
+img,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--c-blue);
+  color: #fff;
+}
+
+/* Text filled with the logo gradient. */
+.grad-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+
+.wrap {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--col-gap);
+}
+
+.section {
+  padding-block: var(--section);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--gutter);
+  top: -100px;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+/* Mono label: format, timecode, catalogue data. Encodes facts, never decoration. */
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  line-height: 1.4;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.lead {
+  font-size: var(--fs-lead);
+  line-height: 1.5;
+  max-width: var(--measure);
+}
+
+.muted {
+  color: var(--fg-muted);
+}
+
+.italic {
+  font-style: italic;
+}
+
+/* Text link with a drawn underline. */
+.link {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 2px;
+  transition: background-size var(--dur-mid) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .link:hover {
+    background-size: 0% 1px;
+    background-position: 100% 100%;
+  }
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.06em !important;
+  font-size: 0.8125rem !important;
+  font-weight: 600 !important;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-height: 48px;
+  padding: 0.85rem 1.5rem;
+  border: 1px solid var(--fg);
+  border-radius: var(--radius);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition:
+    background-color var(--dur-fast) ease,
+    color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease;
+}
+
+.btn-primary {
+  background: var(--grad);
+  background-size: 160% 100%;
+  background-position: 0% 50%;
+  border-color: transparent;
+  color: #05050d;
+  transition:
+    background-position var(--dur-mid) var(--ease-out),
+    box-shadow var(--dur-mid) var(--ease-out);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--fg);
+  border-color: var(--line-strong);
+}
+
+@media (hover: hover) {
+  .btn-primary:hover {
+    background-position: 100% 50%;
+    box-shadow: 0 0 28px rgb(79 139 255 / 0.45);
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--fg);
+  }
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn .arrow {
+  transition: transform var(--dur-mid) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .btn:hover .arrow {
+    transform: translateX(4px);
+  }
+}
+
+/* Placeholder notice — visible until real work replaces the draft entries. */
+.placeholder-tag {
+  display: inline-block;
+  padding: 0.15rem 0.45rem;
+  border: 1px dashed var(--line-strong);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+/* ==========================================================================
+   Motion pre-states
+   `html.motion` is set by an inline script only when JS runs and the visitor
+   has not asked for reduced motion. If the animation runtime never starts,
+   `html.motion-failsafe` reveals everything after a short delay.
+   ========================================================================== */
+
+.motion [data-reveal] {
+  opacity: 0;
+}
+
+.motion [data-mask] > * {
+  transform: translateY(105%);
+}
+
+.motion [data-reveal-clip] {
+  clip-path: inset(100% 0% 0% 0%);
+}
+
+.motion-failsafe [data-reveal-clip] {
+  clip-path: none !important;
+}
+
+.motion [data-words] > * {
+  opacity: 0.14;
+}
+
+.motion-failsafe [data-words] > * {
+  opacity: 1 !important;
+}
+
+.motion-failsafe [data-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.motion-failsafe [data-mask] > * {
+  transform: none !important;
+}
+
+[data-mask] {
+  display: block;
+  overflow: clip;
+  overflow-clip-margin: 0.12em;
+  padding-bottom: 0.06em;
+}
+
+[data-mask] > * {
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+  }
+}
+
+@media print {
+  html,
+  body {
+    background: #05050a;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body > header,
+  body > footer,
+  .skip-link {
+    display: none !important;
+  }
+}

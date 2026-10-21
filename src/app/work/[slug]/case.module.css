@@ -1,0 +1,72 @@
+.film {
+  margin-bottom: var(--space-5);
+}
+
+/* Verticals and squares are presented at a sensible height, centred. */
+.film[data-aspect="9:16"] > div {
+  max-width: min(440px, 100%);
+  margin-inline: auto;
+}
+
+.film[data-aspect="4:5"] > div,
+.film[data-aspect="1:1"] > div {
+  max-width: min(720px, 100%);
+  margin-inline: auto;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3) var(--col-gap);
+  padding-block: var(--space-3);
+  border-block: 1px solid var(--line);
+}
+
+.facts dt {
+  margin-bottom: 0.3rem;
+}
+
+.facts dd {
+  margin: 0;
+}
+
+.summary {
+  margin-top: var(--space-4);
+}
+
+.credits {
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+}
+
+.credits dd {
+  margin: 0.2rem 0 0;
+}
+
+.next {
+  padding-bottom: var(--space-6);
+}
+
+.nextLink {
+  display: grid;
+  gap: 0.5rem;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line);
+}
+
+.nextTitle {
+  font-family: var(--font-display);
+  font-size: var(--fs-h1);
+  line-height: 1;
+  transition: letter-spacing var(--dur-mid) var(--ease-out);
+}
+
+.nextLink:hover .nextTitle {
+  font-style: italic;
+}
+
+@media (min-width: 900px) {
+  .facts {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+

@@ -1,0 +1,103 @@
+.section {
+  scroll-margin-top: var(--header-h);
+}
+
+.head {
+  display: grid;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.heading {
+  font-size: var(--fs-h2);
+  line-height: 1.02;
+}
+
+.steps {
+  position: relative;
+  display: grid;
+  padding-left: clamp(1.5rem, 4vw, 4rem);
+}
+
+.rail {
+  position: absolute;
+  left: 0;
+  top: 0.4rem;
+  bottom: 0;
+  width: 1px;
+  background: var(--line);
+}
+
+.railFill {
+  position: absolute;
+  inset: 0;
+  background: var(--fg);
+  transform-origin: top;
+}
+
+.step {
+  position: relative;
+  display: grid;
+  gap: 0.75rem;
+  padding-bottom: clamp(3rem, 2rem + 4vw, 6rem);
+}
+
+/* A tick on the rail for each stage. */
+.step::before {
+  content: "";
+  position: absolute;
+  left: calc(clamp(1.5rem, 4vw, 4rem) * -1 - 4px);
+  top: 0.35rem;
+  width: 9px;
+  height: 9px;
+  background: var(--bg);
+  border: 1px solid var(--fg);
+}
+
+.name {
+  font-size: var(--fs-h2);
+  line-height: 1;
+}
+
+.summary {
+  font-size: var(--fs-lead);
+  max-width: var(--measure);
+}
+
+.exchange {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+  max-width: 52rem;
+}
+
+.exchange dt {
+  margin-bottom: 0.35rem;
+}
+
+.exchange dd {
+  margin: 0;
+  color: var(--fg-muted);
+}
+
+@media (min-width: 900px) {
+  .step {
+    grid-template-columns: 10rem 1fr;
+    column-gap: var(--col-gap);
+  }
+
+  .step > :not(.index) {
+    grid-column: 2;
+  }
+
+  .index {
+    grid-row: 1 / span 2;
+    padding-top: 0.6rem;
+  }
+
+  .exchange {
+    grid-template-columns: 1fr 1fr;
+  }
+}

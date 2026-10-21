@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo, IBM_Plex_Mono, Orbitron } from "next/font/google";
+import Script from "next/script";
 import { site } from "@/content/site";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -70,7 +71,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: bootScript }} />
+        <Script id="xv-motion-boot" strategy="beforeInteractive">
+          {bootScript}
+        </Script>
       </head>
       <body>
         <a className="skip-link" href="#main">
